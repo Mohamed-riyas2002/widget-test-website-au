@@ -247,7 +247,7 @@ function sendDataToChild(data) {
     var childFrame = document.getElementById('parentFrame').contentWindow;
     childFrame.postMessage(data, 'https://react-widget-site-suba.netlify.app');
 }
-sendDataToChild();
+sendDataToChild('hello from parent');
 </script>
 </body>
 </html>
