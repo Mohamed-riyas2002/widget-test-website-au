@@ -231,6 +231,23 @@
     </div>
   </div>
   <script src="./index.js"></script>
-<iframe width="100%"  height="1000" sandbox="allow-scripts" src="https://react-widget-site-suba.netlify.app" frameborder="0"></iframe>
+<iframe id="parentFrame" width="100%"  height="1000" sandbox="allow-scripts" src="https://react-widget-site-suba.netlify.app" frameborder="0"></iframe>
+<script>
+// Listen for messages from the child iframe
+window.addEventListener('message', function(event) {
+    // Verify the origin of the sender
+    if (event.origin !== 'https://react-widget-site-suba.netlify.app') return;
+
+    // Do something with the received data from the child iframe
+    console.log('Received message from child:', event.data);
+});
+
+// Example function to send data to the child iframe
+function sendDataToChild(data) {
+    var childFrame = document.getElementById('parentFrame').contentWindow;
+    childFrame.postMessage(data, 'https://react-widget-site-suba.netlify.app');
+}
+sendDataToChild();
+</script>
 </body>
 </html>
