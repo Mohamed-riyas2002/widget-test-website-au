@@ -244,12 +244,18 @@ window.addEventListener('message', function(event) {
 
 // Example function to send data to the child iframe
 document.addEventListener("DOMContentLoaded", function() {
-  function sendDataToChild(data) {
-      var childFrame = document.getElementById('parentFrame').contentWindow;
-      childFrame.postMessage(data, 'https://react-widget-site-suba.netlify.app');
-  }
-  sendDataToChild('hello from parent');
+  // function sendDataToChild(data) {
+  //     var childFrame = document.getElementById('parentFrame').contentWindow;
+  //     childFrame.postMessage(data, 'https://react-widget-site-suba.netlify.app');
+  // }
+  // sendDataToChild('hello from parent');
+  var iframe = document.getElementById('parentFrame');
+iframe.onload = function() {
+    var targetOrigin = 'https://react-widget-site-suba.netlify.app';
+    iframe.contentWindow.postMessage('Your message here', targetOrigin);
+};
 });
+
 </script>
 </body>
 </html>
